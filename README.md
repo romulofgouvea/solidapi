@@ -21,6 +21,10 @@ Esse princípio determina que cada classe, cada arquivo dentro da nossa aplicaç
 function registrationAndEmailConfirmationAndAuthentication() {...}
 ```
 
+<h2 align="center">
+  <img alt="Banner" src="./images/estrutura-pastas.png" />
+</h2>
+
 ### :beginner: O ⇒ Open Closed Principle
 
 Esse princípio defini que uma classe deve ser aberta para extensões, mas não deve ser aberta para modificações, ou seja, quando a gente vai estender uma classe, a gente vai reaproveitar todo funcionamento que ela já tem e nós não vamos sobrescrever funcionamento daquela classe, nós não vamos criar uma nova classe substituindo funcionamentos, a gente vai estender aquela classe e reaproveitar o funcionamento que ela já tem substituindo apenas alguns pontos que a gente acha interessante, mas a gente nunca vai estender uma classe e modificá-la por completo.
