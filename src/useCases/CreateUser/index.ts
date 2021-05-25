@@ -49,3 +49,8 @@ export { createUserUseCase, createUserController };
 // pode realizar dentro da nossa aplicação. A gente pode pensar que cada caso de uso 
 // da nossa aplicação como uma funcionalidade que o usuário pode fazer aqui dentro. 
 // A única funcionalidade que a gente tem até agora na nossa API é a criação de um usuário.
+
+// providers seriam tipo os repositories, porém repositories eu gosto manter somente para lugares 
+// que a gente armazena dados, como por exemplo bancos de dados, arquivos ou qualquer coisa assim. 
+// Os providers nesse caso seria para quando eu for comunicar com um API externa, com alguma coisa 
+// de envio de e-mail, ou qualquer coisa assim, eu crio em providers.
