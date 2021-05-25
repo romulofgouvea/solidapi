@@ -95,6 +95,7 @@ Ave
 
 PicaPau
 - bicar()
+- voar()
 
 Pinguim
 - bicar() 
