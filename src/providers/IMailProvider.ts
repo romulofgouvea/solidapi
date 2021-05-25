@@ -1,5 +1,3 @@
-// contrato, interface que define quais são os métodos que eu vou ter no envio de e-mail
-
 interface IAddress {
   email: string;
   name: string;

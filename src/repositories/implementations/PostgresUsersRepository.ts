@@ -1,7 +1,3 @@
-// esse repository é fake, que basicamente vai salvar as informações
-// dentro dele mesmo, eu não vou fazer a conexão com nossa aplicação
-// com o banco de dados.
-
 import { User } from "../../entities/User";
 import { IUsersRepository } from "../IUsersRepository";
 
