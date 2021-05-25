@@ -74,6 +74,8 @@ Esse princípio defende que a gente pode substituir implementações que uma cla
 
 Exemplo 1:
 ```bash
+# ERRADO
+
 Ave 
 - bicar()
 - voar()
@@ -83,7 +85,19 @@ PicaPau
 - voar()
 
 Pinguim
-- bicar() # Errado, pinguim não voa.
+- bicar() 
+- voar() # Errado, pinguim não voa.
+
+# CERTO
+
+Ave 
+- bicar()
+
+PicaPau
+- bicar()
+
+Pinguim
+- bicar() 
 ```
 Exemplo 2:
 ```bash
@@ -137,5 +151,43 @@ Ferramenta está fundida com o usuário, assim como o Edwards Mãos de Tesoura. 
 <h2 align="center">
   <img alt="Banner" src="./images/d-2.png" />
 </h2>
+
+```bash
+# ERRADO
+
+class CreateCategoryService {
+  execute({ description, name }: IRequest) {
+    const categoriesRepository = new CategoriesRepository();
+    
+    const categoryAlreadyExists = categoriesRepository.findByName(name);
+    
+    if (categoryAlreadyExists) {
+      throw new Error("Category already exists!");
+    }
+    
+    this.categoriesRepository.create({ description, name });
+  }
+}
+
+# CERTO
+
+class CreateCategoryService {
+  private categoriesRepository: ICategoriesRepository;
+  
+  constructor(categoriesRepository: ICategoriesRepository) {
+    this.categoriesRepository = categoriesRepository;
+  }
+  
+  execute({ description, name }: IRequest) {
+    const categoryAlreadyExists = this.categoriesRepository.findByName(name);
+    
+    if (categoryAlreadyExists) {
+      throw new Error("Category already exists!");
+    }
+    
+    this.categoriesRepository.create({ description, name });
+  }
+}
+```
 
 Portanto, um módulo não deve depender de detalhes de implementação de outro módulo diretamente. Deve existir uma abstração no meio, uma interface por exemplo.
