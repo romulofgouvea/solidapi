@@ -143,6 +143,28 @@ Não deve forçar classes a dependerem de métodos que eles não usam.
   <img alt="Banner" src="./images/i-2.png" />
 </h2>
 
+Exemplo 1:
+```bash
+# ERRADO
+
+Ave 
+- bicar()
+
+AvesTerrestres estende de Ave
+- bicar()
+
+AvesQueVoam estende de Ave
+- bicar()
+- voar()
+
+PicaPau estende de AvesQueVoam
+- bicar()
+- voar()
+
+Pinguim estende de AvesTerrestres
+- bicar()
+```
+
 ### :beginner: D ⇒ Dependency Inversion Principle
 
 Esse princípio anda muito próximo com o Liskov substitution principle. O Dependency inversion principle defende que as classes da nossa aplicação, as classes que realizam as ações, os useCases, os controllers ou qualquer coisa assim, elas não devem depender de implementações. Elas devem depender geralmente de interfaces que são formas não funcionais da gente de mostrar qual vai ser a tipagem de uma classe. Imagina que a gente tenha um arquivo responsável por fazer upload de imagens. A classe de upload de imagens não deve saber onde que a imagem deve ser armazenada, ela deve ter a responsabilidade apenas de mostrar qual é o fluxo de upload de imagens, ela não deve saber exatamente onde que a imagem vai ser guardada. Então é isso que faz o Dependency inversion principle, a gente coloca essa dependência, esse driver de onde vai ser armazenado a imagem, a gente passa como dependência para essa classe de upload de imagem, mas ela não sabe exatamente qual que é o lugar final onde essa imagem vai cair. Na verdade ela apenas sabe que naquele driver tem aqueles métodos, método de upload, método delete por exemplo, mas ele não sabe o que o método faz, e se um dia eu trocar um pelo o outro, aplicando o Liskov substitution principle vai dar tudo certo, vai continuar funcionando desde que respeite a interface principal, desde que respeite o que eu tenho que passar, o que eu tenho que retornar e por aí vai.
