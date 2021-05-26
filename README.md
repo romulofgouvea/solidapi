@@ -21,6 +21,10 @@ Esse princípio determina que cada classe, cada arquivo dentro da nossa aplicaç
 function registrationAndEmailConfirmationAndAuthentication() {...}
 ```
 
+<h2 align="center">
+  <img alt="Banner" src="./images/estrutura-pastas.png" />
+</h2>
+
 ### :beginner: O ⇒ Open Closed Principle
 
 Esse princípio defini que uma classe deve ser aberta para extensões, mas não deve ser aberta para modificações, ou seja, quando a gente vai estender uma classe, a gente vai reaproveitar todo funcionamento que ela já tem e nós não vamos sobrescrever funcionamento daquela classe, nós não vamos criar uma nova classe substituindo funcionamentos, a gente vai estender aquela classe e reaproveitar o funcionamento que ela já tem substituindo apenas alguns pontos que a gente acha interessante, mas a gente nunca vai estender uma classe e modificá-la por completo.
@@ -74,6 +78,8 @@ Esse princípio defende que a gente pode substituir implementações que uma cla
 
 Exemplo 1:
 ```bash
+# ERRADO
+
 Ave 
 - bicar()
 - voar()
@@ -83,7 +89,20 @@ PicaPau
 - voar()
 
 Pinguim
-- bicar() # Errado, pinguim não voa.
+- bicar() 
+- voar() # Errado, pinguim não voa.
+
+# CERTO
+
+Ave 
+- bicar()
+
+PicaPau
+- bicar()
+- voar()
+
+Pinguim
+- bicar() 
 ```
 Exemplo 2:
 ```bash
@@ -137,5 +156,43 @@ Ferramenta está fundida com o usuário, assim como o Edwards Mãos de Tesoura. 
 <h2 align="center">
   <img alt="Banner" src="./images/d-2.png" />
 </h2>
+
+```bash
+# ERRADO
+
+class CreateCategoryService {
+  execute({ description, name }: IRequest) {
+    const categoriesRepository = new CategoriesRepository();
+    
+    const categoryAlreadyExists = categoriesRepository.findByName(name);
+    
+    if (categoryAlreadyExists) {
+      throw new Error("Category already exists!");
+    }
+    
+    this.categoriesRepository.create({ description, name });
+  }
+}
+
+# CERTO
+
+class CreateCategoryService {
+  private categoriesRepository: ICategoriesRepository;
+  
+  constructor(categoriesRepository: ICategoriesRepository) {
+    this.categoriesRepository = categoriesRepository;
+  }
+  
+  execute({ description, name }: IRequest) {
+    const categoryAlreadyExists = this.categoriesRepository.findByName(name);
+    
+    if (categoryAlreadyExists) {
+      throw new Error("Category already exists!");
+    }
+    
+    this.categoriesRepository.create({ description, name });
+  }
+}
+```
 
 Portanto, um módulo não deve depender de detalhes de implementação de outro módulo diretamente. Deve existir uma abstração no meio, uma interface por exemplo.
